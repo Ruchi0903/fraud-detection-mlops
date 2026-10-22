@@ -52,3 +52,4 @@ jobs:
           tags: |
             ghcr.io/ruchi0903/fraud-detection-mlops:latest
             ghcr.io/ruchi0903/fraud-detection-mlops:sha-${{ github.sha }}
+            
