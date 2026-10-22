@@ -1,0 +1,1 @@
+Docker image publishing is automated through GitHub Actions.
