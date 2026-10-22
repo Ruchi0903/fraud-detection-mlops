@@ -28,3 +28,6 @@ jobs:
 
       - name: Run API tests
         run: python -m pytest -v
+
+      - name: Build Docker image
+        run: docker build -t fraud-detection-api .
