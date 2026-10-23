@@ -55,3 +55,10 @@ jobs:
             ghcr.io/ruchi0903/fraud-detection-mlops:latest
             ghcr.io/ruchi0903/fraud-detection-mlops:sha-${{ github.sha }}
 
+      - name: Trigger Render deployment
+        if: github.event_name == 'push' && success()
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+        run: |
+          curl --fail --silent --show-error --request POST "$RENDER_DEPLOY_HOOK"
+
