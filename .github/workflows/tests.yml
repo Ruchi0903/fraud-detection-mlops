@@ -59,6 +59,10 @@ jobs:
         if: github.event_name == 'push' && success()
         env:
           RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
+          IMAGE_TAG: sha-${{ github.sha }}
         run: |
-          curl --fail --silent --show-error --request POST "$RENDER_DEPLOY_HOOK"
+          ENCODED_IMAGE_URL="ghcr.io%2Fruchi0903%2Ffraud-detection-mlops%3A${IMAGE_TAG}"
 
+          curl --fail --silent --show-error \
+            --request POST \
+            "${RENDER_DEPLOY_HOOK}&imgURL=${ENCODED_IMAGE_URL}"
